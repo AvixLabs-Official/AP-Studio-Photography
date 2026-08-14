@@ -323,10 +323,11 @@ function renderStudioSpaces() {
         </div>
 
         <ul class="space-facilities-list">
-          ${sp.facilities.map(f => `<li>✓ ${f}</li>`).join('')}
+          ${sp.facilities.map(f => `<li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span>${f}</span></li>`).join('')}
         </ul>
         <a href="#contact" onclick="preselectService('Studio Booking - ${sp.name}'); triggerCameraFlash();" class="btn-ap-outline" style="margin-top:auto; justify-content:center;">
-          <span>Book ${sp.tag} 📸</span>
+          <span>Book ${sp.tag}</span>
+          <span class="cta-arrow">→</span>
         </a>
       </div>
     </article>
@@ -468,7 +469,7 @@ function initBookingForm() {
     e.preventDefault();
     triggerCameraFlash();
     const name = document.getElementById('inquiry-name')?.value || 'Valued Creator';
-    alert(`📸 Flash! Thank you, ${name}! Your studio enquiry has been sent to A P Studio. Our creative team will get back to you shortly.`);
+    alert(`Thank you, ${name}! Your studio enquiry has been received by A P Studio. Our creative production team will get back to you shortly.`);
     form.reset();
   });
 }
