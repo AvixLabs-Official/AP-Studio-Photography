@@ -31,13 +31,19 @@
   <!-- ==========================================================================
      HEADER & NAVIGATION (STICKY WITH SCROLL TRANSITION)
      ========================================================================== -->
+  <!-- ==========================================================================
+     HEADER & NAVIGATION (HIGH-END EDITORIAL HEADER)
+     ========================================================================== -->
   <header class="ap-header" id="site-header">
     <div class="container">
       <div class="ap-header-inner">
-        <!-- Logo (Click triggers Camera Flash!) -->
+        <!-- Logo with Brand Monogram Crest -->
         <a href="#home" class="ap-logo" onclick="triggerCameraFlash()">
-          <span class="ap-logo-main">A P STUDIO 📸</span>
-          <span class="ap-logo-sub">PHOTOGRAPHY & PRODUCTION</span>
+          <div class="ap-logo-emblem">AP</div>
+          <div class="ap-logo-text-group">
+            <span class="ap-logo-main">A P STUDIO</span>
+            <span class="ap-logo-sub">PHOTOGRAPHY & CREATIVE PRODUCTION</span>
+          </div>
         </a>
 
         <!-- Desktop Navigation Links -->
@@ -53,23 +59,24 @@
           </ul>
         </nav>
 
-        <!-- Interactive Studio Controls & Primary CTA -->
-        <div style="display:flex; align-items:center; gap:14px;">
+        <!-- Studio Control Bar & Primary CTA -->
+        <div class="header-action-group">
           <!-- Viewfinder Toggle -->
-          <button onclick="toggleViewfinder()" class="btn-ap-outline" style="padding:7px 14px; font-size:0.75rem;" title="Toggle Camera Viewfinder Overlay">
+          <button onclick="toggleViewfinder()" class="btn-ap-outline" style="padding:6px 12px; font-size:0.75rem;" title="Toggle Camera Viewfinder HUD">
             <span>📷 Viewfinder</span>
           </button>
 
-          <!-- Studio Mood Switcher -->
+          <!-- Studio Mood Theme Switcher -->
           <div class="studio-mood-bar">
             <button class="mood-btn active" onclick="setStudioMood('cinematic')" title="Cinematic Dark Mode">Dark</button>
             <button class="mood-btn" onclick="setStudioMood('neon')" title="Neon Cyber Mode">Neon</button>
             <button class="mood-btn" onclick="setStudioMood('daylight')" title="Studio Daylight Mode">Light</button>
           </div>
 
-          <a href="#contact" class="btn-ap-primary" onclick="triggerCameraFlash()">
-            <span>Book Studio 📸</span>
+          <a href="#contact" class="btn-ap-primary" onclick="triggerCameraFlash()" style="padding:10px 22px;">
+            <span>Book Studio →</span>
           </a>
+
           <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
           </button>
