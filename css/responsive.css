@@ -1,8 +1,38 @@
 /* ==========================================================================
-   A P STUDIO — RESPONSIVE MEDIA QUERIES
+   A P STUDIO — RESPONSIVE MEDIA QUERIES FOR HEADER & PAGES
    ========================================================================== */
 
+@media (max-width: 1200px) {
+  .ap-nav-links {
+    gap: 14px;
+  }
+
+  .ap-nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+  }
+}
+
 @media (max-width: 1024px) {
+  .ap-nav-desktop {
+    display: none;
+  }
+
+  .btn-viewfinder-utility,
+  .studio-mood-bar {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    cursor: pointer;
+    color: var(--color-text);
+    background: transparent;
+    border: none;
+    padding: 6px;
+    z-index: 1001;
+  }
+
   .intro-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -40,14 +70,6 @@
   .testimonials-grid {
     grid-template-columns: 1fr;
   }
-
-  .ap-nav-links {
-    gap: 20px;
-  }
-
-  .ap-nav-links a {
-    font-size: 0.78rem;
-  }
 }
 
 @media (max-width: 768px) {
@@ -55,19 +77,17 @@
     padding: 0 20px;
   }
 
-  .ap-header-inner {
-    padding: 16px 0;
+  .ap-header {
+    height: 76px;
   }
 
-  .ap-nav-links {
+  .ap-logo-sub {
     display: none;
   }
 
-  .mobile-menu-toggle {
-    display: block;
-    cursor: pointer;
-    color: var(--color-text);
-    z-index: 1001;
+  .btn-ap-primary-header {
+    padding: 7px 14px;
+    font-size: 0.75rem;
   }
 
   .ap-hero-section {

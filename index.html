@@ -32,53 +32,57 @@
      HEADER & NAVIGATION (STICKY WITH SCROLL TRANSITION)
      ========================================================================== -->
   <!-- ==========================================================================
-     HEADER & NAVIGATION (HIGH-END EDITORIAL HEADER)
+     HEADER & NAVIGATION — LUXURY EDITORIAL REFINEMENT
      ========================================================================== -->
   <header class="ap-header" id="site-header">
     <div class="container">
       <div class="ap-header-inner">
-        <!-- Logo with Brand Monogram Crest -->
+        <!-- Logo with Refined AP Monogram Crest -->
         <a href="#home" class="ap-logo" onclick="triggerCameraFlash()">
           <div class="ap-logo-emblem">AP</div>
           <div class="ap-logo-text-group">
-            <span class="ap-logo-main">A P STUDIO</span>
+            <span class="ap-logo-main">AP STUDIO</span>
             <span class="ap-logo-sub">PHOTOGRAPHY & CREATIVE PRODUCTION</span>
           </div>
         </a>
 
-        <!-- Desktop Navigation Links -->
+        <!-- Single-Line Desktop Navigation Links -->
         <nav class="ap-nav-desktop">
           <ul class="ap-nav-links">
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#studio">Studio</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#hall-of-fame">Hall of Fame</a></li>
-            <li><a href="#camera-rental">Camera Rental</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" class="active">HOME</a></li>
+            <li><a href="#studio">STUDIO</a></li>
+            <li><a href="#services">SERVICES</a></li>
+            <li><a href="#portfolio">PORTFOLIO</a></li>
+            <li><a href="#hall-of-fame">HALL OF FAME</a></li>
+            <li><a href="#camera-rental">CAMERA RENTAL</a></li>
+            <li><a href="#contact">CONTACT</a></li>
           </ul>
         </nav>
 
-        <!-- Studio Control Bar & Primary CTA -->
+        <!-- Compact Utility Controls & Primary CTA -->
         <div class="header-action-group">
-          <!-- Viewfinder Toggle -->
-          <button onclick="toggleViewfinder()" class="btn-ap-outline" style="padding:6px 12px; font-size:0.75rem;" title="Toggle Camera Viewfinder HUD">
-            <span>📷 Viewfinder</span>
+          <!-- Compact Secondary Viewfinder HUD Button -->
+          <button onclick="toggleViewfinder()" class="btn-viewfinder-utility" title="Toggle Camera Viewfinder HUD">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            <span>HUD</span>
           </button>
 
-          <!-- Studio Mood Theme Switcher -->
+          <!-- Compact Theme Selector -->
           <div class="studio-mood-bar">
-            <button class="mood-btn active" onclick="setStudioMood('cinematic')" title="Cinematic Dark Mode">Dark</button>
-            <button class="mood-btn" onclick="setStudioMood('neon')" title="Neon Cyber Mode">Neon</button>
-            <button class="mood-btn" onclick="setStudioMood('daylight')" title="Studio Daylight Mode">Light</button>
+            <button class="mood-btn active" onclick="setStudioMood('cinematic')" title="Dark Mode">Dark</button>
+            <button class="mood-btn" onclick="setStudioMood('neon')" title="Neon Mode">Neon</button>
+            <button class="mood-btn" onclick="setStudioMood('daylight')" title="Light Mode">Light</button>
           </div>
 
-          <a href="#contact" class="btn-ap-primary" onclick="triggerCameraFlash()" style="padding:10px 22px;">
-            <span>Book Studio →</span>
+          <!-- Refined Primary CTA -->
+          <a href="#contact" class="btn-ap-primary-header" onclick="triggerCameraFlash()">
+            <span>Book Studio</span>
+            <span class="cta-arrow">→</span>
           </a>
 
+          <!-- Mobile Hamburger Toggle -->
           <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
           </button>
         </div>
       </div>
