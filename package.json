@@ -1,0 +1,13 @@
+{
+  "name": "ap-studio-photography",
+  "version": "1.0.0",
+  "description": "A P Studio - Premium Photography & Creative Production House",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.2"
+  }
+}

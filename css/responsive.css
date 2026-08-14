@@ -1,0 +1,135 @@
+/* ==========================================================================
+   A P STUDIO — RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .intro-image-box {
+    height: 420px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ap-portfolio-card.feature-large {
+    grid-column: span 1;
+  }
+
+  .studio-spaces-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rental-grid-5col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery-grid-4col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bts-grid-4col,
+  .whyus-grid-4col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ap-nav-links {
+    gap: 20px;
+  }
+
+  .ap-nav-links a {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .ap-header-inner {
+    padding: 16px 0;
+  }
+
+  .ap-nav-links {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    cursor: pointer;
+    color: var(--color-text);
+    z-index: 1001;
+  }
+
+  .ap-hero-section {
+    padding: 100px 0 60px;
+  }
+
+  .hero-title {
+    font-size: 2.6rem;
+  }
+
+  .ap-section {
+    padding: 72px 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .ap-service-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .service-num {
+    font-size: 1.1rem;
+  }
+
+  .hall-fame-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .rental-grid-5col {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid-4col {
+    grid-template-columns: 1fr;
+  }
+
+  .bts-grid-4col,
+  .whyus-grid-4col {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid-2col {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contact-card {
+    padding: 28px 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}

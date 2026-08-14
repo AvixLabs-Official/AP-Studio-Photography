@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A P STUDIO — Photography & Creative Production House</title>
+  <meta name="description" content="A P Studio is a premier photography, videography, and creative production house featuring professional studio floors, camera equipment rental, and end-to-end creative production.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     HEADER & NAVIGATION (STICKY WITH SCROLL TRANSITION)
+     ========================================================================== -->
+  <header class="ap-header" id="site-header">
+    <div class="container">
+      <div class="ap-header-inner">
+        <!-- Logo -->
+        <a href="#home" class="ap-logo">
+          <span class="ap-logo-main">A P STUDIO</span>
+          <span class="ap-logo-sub">PHOTOGRAPHY & PRODUCTION</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="ap-nav-desktop">
+          <ul class="ap-nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#studio">Studio</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#hall-of-fame">Hall of Fame</a></li>
+            <li><a href="#camera-rental">Camera Rental</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Primary CTA -->
+        <div style="display:flex; align-items:center; gap:16px;">
+          <a href="#contact" class="btn-ap-primary">
+            <span>Book the Studio</span>
+          </a>
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#studio">Studio</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#hall-of-fame">Hall of Fame</a></li>
+      <li><a href="#camera-rental">Camera Rental</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ==========================================================================
+     HERO SECTION (CINEMATIC FULL-SCREEN PHOTOGRAPHY HERO)
+     ========================================================================== -->
+  <section class="ap-hero-section" id="home">
+    <div class="hero-bg-media">
+      <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1800&q=90" alt="A P Studio Photography">
+    </div>
+    <div class="hero-overlay-gradient"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-eyebrow">A PHOTOGRAPHY & CREATIVE STUDIO</span>
+        <h1 class="hero-title">Stories Behind<br>Every Frame.</h1>
+        <p class="hero-subtext">Photography, production and creative spaces designed to bring your vision to life.</p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn-ap-primary">
+            <span>Explore Our Work →</span>
+          </a>
+          <a href="#contact" class="btn-ap-outline">
+            <span>Book the Studio</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <span>SCROLL</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     INTRODUCTION SECTION (#studio) — ASYMMETRICAL EDITORIAL LAYOUT
+     ========================================================================== -->
+  <section class="ap-section" id="studio">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-text-col">
+          <span class="section-label">THE STUDIO</span>
+          <h2 class="section-title">Where Vision<br>Becomes Visual.</h2>
+          <p class="intro-paragraph">
+            A P Studio is a multi-disciplinary photography and creative production house. We provide high-end portrait and commercial photography, video production, state-of-the-art studio floor rentals, professional camera equipment, and end-to-end creative production services for artists, agencies, and brands.
+          </p>
+          <div>
+            <a href="#contact" class="btn-ap-outline">
+              <span>Learn Our Approach →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="intro-image-box">
+          <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=1000&q=85" alt="A P Studio Floor">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     SERVICES SECTION (#services) — EDITORIAL LIST WITH THIN DIVIDERS
+     ========================================================================== -->
+  <section class="ap-section" id="services" style="background:var(--bg-secondary);">
+    <div class="container">
+      <span class="section-label">SERVICES</span>
+      <h2 class="section-title">What We Create</h2>
+
+      <div class="services-list" id="services-container">
+        <!-- Rendered dynamically by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     FEATURED WORK PORTFOLIO (#portfolio) — ASYMMETRICAL EDITORIAL LAYOUT
+     ========================================================================== -->
+  <section class="ap-section" id="portfolio">
+    <div class="container">
+      <span class="section-label">PORTFOLIO</span>
+      <h2 class="section-title">Selected Work</h2>
+
+      <div class="portfolio-grid" id="portfolio-container">
+        <!-- Rendered dynamically by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     HALL OF FAME SECTION (#hall-of-fame) — HOVER PREVIEW LIST
+     ========================================================================== -->
+  <section class="ap-section" id="hall-of-fame" style="background:var(--bg-secondary);">
+    <div class="container">
+      <span class="section-label">RECOGNITION</span>
+      <h2 class="section-title">Hall of Fame</h2>
+      <p style="color:var(--color-muted); margin-top:8px;">Artists, creators and stories captured through our lens.</p>
+
+      <div class="hall-fame-list" id="hall-fame-container">
+        <!-- Rendered dynamically by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Dynamic Image Preview Box for Hall of Fame -->
+  <div class="hall-preview-box" id="hall-preview-box">
+    <img id="hall-preview-img" src="" alt="Hall of Fame Preview">
+  </div>
+
+  <!-- ==========================================================================
+     STUDIO SPACES SHOWCASE (#studio-spaces) — 4 STUDIO FLOORS
+     ========================================================================== -->
+  <section class="ap-section" id="studio-spaces">
+    <div class="container">
+      <span class="section-label">STUDIO FLOORS</span>
+      <h2 class="section-title">Find Your Space</h2>
+      <p style="color:var(--color-muted); margin-top:8px;">Dedicated environments tailored for photography, video, and commercial production.</p>
+
+      <div class="studio-spaces-grid" id="studio-spaces-container">
+        <!-- Rendered dynamically by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     CAMERA RENTAL SECTION (#camera-rental)
+     ========================================================================== -->
+  <section class="ap-section" id="camera-rental" style="background:var(--bg-secondary);">
+    <div class="container">
+      <span class="section-label">EQUIPMENT RENTAL</span>
+      <h2 class="section-title">Professional Gear,<br>Ready When You Are.</h2>
+
+      <div class="rental-grid-5col" id="camera-rental-container">
+        <!-- Rendered dynamically by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     FULL-WIDTH VISUAL GALLERY (#gallery) — WITH LIGHTBOX MODAL
+     ========================================================================== -->
+  <section class="ap-section" id="gallery">
+    <div class="container">
+      <span class="section-label">VISUAL GALLERY</span>
+      <h2 class="section-title">Editorial Moments</h2>
+
+      <div class="gallery-grid-4col" id="gallery-masonry-container">
+        <!-- Rendered dynamically by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-container">
+      <span class="lightbox-close">&times;</span>
+      <img id="lightbox-img" src="" alt="Enlarged Visual Gallery Photograph">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+     BEHIND THE SCENES SECTION (#behind-the-scenes)
+     ========================================================================== -->
+  <section class="ap-section" id="behind-the-scenes" style="background:var(--bg-secondary);">
+    <div class="container">
+      <span class="section-label">PRODUCTION WORKFLOW</span>
+      <h2 class="section-title">Behind The Lens</h2>
+
+      <div class="bts-grid-4col" id="bts-container">
+        <!-- Rendered dynamically by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     WHY A P STUDIO (#why-us)
+     ========================================================================== -->
+  <section class="ap-section" id="why-us">
+    <div class="container">
+      <span class="section-label">CREATIVE ADVANTAGE</span>
+      <h2 class="section-title">Built For Creators.</h2>
+
+      <div class="whyus-grid-4col" id="whyus-container">
+        <!-- Rendered dynamically by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     TESTIMONIALS / OUR APPROACH (#testimonials)
+     ========================================================================== -->
+  <section class="ap-section" id="testimonials" style="background:var(--bg-secondary);">
+    <div class="container">
+      <span class="section-label">CLIENT VOICES</span>
+      <h2 class="section-title">What Directors Say</h2>
+
+      <div class="testimonials-grid" id="testimonials-container">
+        <!-- Rendered dynamically by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     CONTACT & BOOKING SECTION (#contact)
+     ========================================================================== -->
+  <section class="ap-section" id="contact">
+    <div class="container">
+      <div style="text-align:center; max-width:640px; margin:0 auto 36px;">
+        <span class="section-label">START A PROJECT</span>
+        <h2 class="section-title">Let's Create Something.</h2>
+        <p style="color:var(--color-muted); margin-top:12px;">Have a project, shoot or production in mind? Let's talk.</p>
+      </div>
+
+      <div class="contact-card">
+        <form id="ap-contact-form">
+          <div class="form-grid-2col">
+            <div>
+              <label class="form-label">Full Name *</label>
+              <input type="text" id="inquiry-name" required placeholder="e.g. Vikramaditya S." class="form-field">
+            </div>
+            <div>
+              <label class="form-label">Email Address *</label>
+              <input type="email" required placeholder="vikram@studio.com" class="form-field">
+            </div>
+          </div>
+
+          <div class="form-grid-2col">
+            <div>
+              <label class="form-label">Phone Number *</label>
+              <input type="tel" required placeholder="+91 98765 43210" class="form-field">
+            </div>
+            <div>
+              <label class="form-label">Project Type *</label>
+              <select id="inquiry-project-type" class="form-field">
+                <option value="Photography">Photography Shoot</option>
+                <option value="Videography">Cinematic Videography</option>
+                <option value="Studio Rental">Studio Floor Rental</option>
+                <option value="Camera Rental">Camera Equipment Rental</option>
+                <option value="Creative Production">End-to-End Production</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-bottom:24px;">
+            <label class="form-label">Preferred Date & Production Details</label>
+            <textarea rows="4" placeholder="Tell us about your target shoot dates, floor preference, equipment needs, or creative vision..." class="form-field" style="font-family:inherit;"></textarea>
+          </div>
+
+          <button type="submit" class="btn-ap-primary" style="width:100%; justify-content:center; padding:16px;">
+            <span>Send Enquiry →</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer class="ap-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#home" class="ap-logo" style="margin-bottom:16px;">
+            <span class="ap-logo-main">A P STUDIO</span>
+            <span class="ap-logo-sub">PHOTOGRAPHY & PRODUCTION</span>
+          </a>
+          <p style="font-size:0.85rem; color:var(--color-muted); line-height:1.6; max-width:320px;">
+            A P Studio is a premier photography, videography, and creative production house providing studio spaces and equipment rental for visual creators.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#studio">Studio</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#hall-of-fame">Hall of Fame</a></li>
+            <li><a href="#studio-spaces">Studio Spaces</a></li>
+            <li><a href="#camera-rental">Camera Rental</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Studio Desk</h4>
+          <ul>
+            <li><a href="mailto:booking@apstudio.com">booking@apstudio.com</a></li>
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><span>Studio 4, Creative Enclave, Bengaluru</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 A P STUDIO. All Rights Reserved.</span>
+        <span>Photography • Videography • Studio • Production</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
