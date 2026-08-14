@@ -78,7 +78,7 @@ img {
 /* Buttons */
 .btn-ap-primary {
   background-color: var(--color-text);
-  color: #0B0B0B;
+  color: var(--bg-primary);
   font-weight: 600;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
@@ -95,7 +95,7 @@ img {
 .btn-ap-primary:hover {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
-  color: #0B0B0B;
+  color: var(--bg-primary);
   transform: translateY(-2px);
 }
 
@@ -278,7 +278,7 @@ img {
 /* Refined Primary Header CTA */
 .btn-ap-primary-header {
   background-color: var(--color-text);
-  color: #0B0B0B;
+  color: var(--bg-primary);
   font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.04em;
@@ -295,7 +295,7 @@ img {
 .btn-ap-primary-header:hover {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
-  color: #0B0B0B;
+  color: var(--bg-primary);
   transform: translateY(-2px);
 }
 
@@ -1198,10 +1198,79 @@ body.theme-daylight {
   --bg-secondary: #E8E4DA;
   --bg-surface: #FFFFFF;
   --color-text: #111111;
-  --color-muted: #666056;
+  --color-muted: #555046;
   --color-accent: #9A7538;
   --color-accent-hover: #7A5B26;
   --border-color: #D2CCC0;
+}
+
+body.theme-daylight .ap-header {
+  background: rgba(244, 241, 234, 0.92);
+  border-bottom-color: var(--border-color);
+}
+
+body.theme-daylight .ap-header.scrolled {
+  background: rgba(244, 241, 234, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+body.theme-daylight .ap-logo-emblem {
+  background: #FFFFFF;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.theme-daylight .studio-mood-bar {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: var(--border-color);
+}
+
+body.theme-daylight .btn-ap-primary,
+body.theme-daylight .btn-ap-primary-header {
+  background-color: #111111;
+  color: #F4F1EA;
+  border-color: #111111;
+}
+
+body.theme-daylight .btn-ap-primary:hover,
+body.theme-daylight .btn-ap-primary-header:hover {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+  border-color: var(--color-accent);
+}
+
+body.theme-daylight .form-field {
+  background: #FFFFFF;
+  color: #111111;
+  border-color: var(--border-color);
+}
+
+body.theme-daylight .form-field:focus {
+  background: #FFFFFF;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(154, 117, 56, 0.15);
+}
+
+body.theme-daylight .ap-footer {
+  background: #E5E0D5;
+  color: #111111;
+  border-top-color: var(--border-color);
+}
+
+body.theme-daylight .footer-col h4 {
+  color: #111111;
+}
+
+body.theme-daylight .space-tag-badge,
+body.theme-daylight .portfolio-img-wrap span {
+  background: rgba(244, 241, 234, 0.92);
+  color: #111111;
+  border-color: var(--border-color);
+}
+
+body.theme-daylight .mobile-nav-overlay {
+  background: #F4F1EA;
 }
 
 /* Camera Flash Screen Effect */
