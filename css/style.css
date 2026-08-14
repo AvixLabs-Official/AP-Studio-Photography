@@ -1069,3 +1069,240 @@ img {
   font-size: 0.8rem;
   color: var(--color-muted);
 }
+
+/* ==========================================================================
+   FUN INTERACTIVE STUDIO MODES & CAMERA EXPERIENCES
+   ========================================================================== */
+
+/* Theme Overrides for Fun Studio Moods */
+body.theme-neon {
+  --bg-primary: #0A050A;
+  --bg-secondary: #140814;
+  --bg-surface: #1E0C1E;
+  --color-text: #FFF0F5;
+  --color-muted: #B89CB8;
+  --color-accent: #FF2A6D;
+  --color-accent-hover: #FF5A8D;
+  --border-color: #381238;
+}
+
+body.theme-daylight {
+  --bg-primary: #F4F1EA;
+  --bg-secondary: #E8E4DA;
+  --bg-surface: #FFFFFF;
+  --color-text: #111111;
+  --color-muted: #666056;
+  --color-accent: #9A7538;
+  --color-accent-hover: #7A5B26;
+  --border-color: #D2CCC0;
+}
+
+/* Camera Flash Screen Effect */
+.camera-flash-overlay {
+  position: fixed;
+  inset: 0;
+  background: #FFFFFF;
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.05s ease-out;
+}
+
+.camera-flash-overlay.flashing {
+  opacity: 0.95;
+  transition: none;
+}
+
+/* Viewfinder HUD Overlay */
+.viewfinder-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.viewfinder-hud.active {
+  display: block;
+  opacity: 1;
+}
+
+.viewfinder-corners {
+  position: absolute;
+  inset: 32px;
+  border: 1px dashed rgba(200, 169, 107, 0.35);
+  pointer-events: none;
+}
+
+.viewfinder-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+}
+
+.viewfinder-crosshair::before,
+.viewfinder-crosshair::after {
+  content: '';
+  position: absolute;
+  background: rgba(200, 169, 107, 0.6);
+}
+
+.viewfinder-crosshair::before {
+  top: 19px; left: 0; width: 40px; height: 2px;
+}
+
+.viewfinder-crosshair::after {
+  top: 0; left: 19px; width: 2px; height: 40px;
+}
+
+.viewfinder-status {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(11, 11, 11, 0.88);
+  border: 1px solid var(--color-accent);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.rec-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF2A6D;
+  animation: recBlink 1s infinite;
+}
+
+@keyframes recBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* Interactive Polaroid Deck */
+.polaroid-stack-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.polaroid-card {
+  background: #FFFFFF;
+  color: #111111;
+  padding: 14px 14px 28px;
+  border-radius: 4px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  width: 230px;
+  cursor: grab;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  user-select: none;
+}
+
+.polaroid-card:nth-child(1) { transform: rotate(-4deg); }
+.polaroid-card:nth-child(2) { transform: rotate(3deg); }
+.polaroid-card:nth-child(3) { transform: rotate(-2deg); }
+.polaroid-card:nth-child(4) { transform: rotate(5deg); }
+
+.polaroid-card:hover {
+  transform: scale(1.08) rotate(0deg) !important;
+  z-index: 20;
+  box-shadow: 0 20px 40px rgba(200, 169, 107, 0.4);
+}
+
+.polaroid-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border: 1px solid #E5E5E5;
+}
+
+.polaroid-caption {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  text-align: center;
+  margin-top: 12px;
+  color: #222222;
+  font-style: italic;
+}
+
+/* Interactive Mood Selector Controls */
+.studio-mood-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  padding: 4px;
+  border-radius: 30px;
+}
+
+.mood-btn {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: var(--color-muted);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.mood-btn.active,
+.mood-btn:hover {
+  background: var(--color-accent);
+  color: #0B0B0B;
+}
+
+/* Interactive Gear Finder Box */
+.gear-finder-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.gear-quiz-btns {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.gear-quiz-btn {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--color-text);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.gear-quiz-btn.active,
+.gear-quiz-btn:hover {
+  background: var(--color-accent);
+  color: #0B0B0B;
+  border-color: var(--color-accent);
+}
+

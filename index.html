@@ -12,15 +12,31 @@
 </head>
 <body>
 
+  <!-- Camera Flash Effect Screen Overlay -->
+  <div class="camera-flash-overlay" id="camera-flash"></div>
+
+  <!-- Viewfinder Camera Grid HUD -->
+  <div class="viewfinder-hud" id="viewfinder-hud">
+    <div class="viewfinder-corners"></div>
+    <div class="viewfinder-crosshair"></div>
+    <div class="viewfinder-status">
+      <span><span class="rec-dot"></span> REC ● 00:04:22</span>
+      <span>ISO 400</span>
+      <span>f/1.4</span>
+      <span>1/1000s</span>
+      <span>RAW 4K</span>
+    </div>
+  </div>
+
   <!-- ==========================================================================
      HEADER & NAVIGATION (STICKY WITH SCROLL TRANSITION)
      ========================================================================== -->
   <header class="ap-header" id="site-header">
     <div class="container">
       <div class="ap-header-inner">
-        <!-- Logo -->
-        <a href="#home" class="ap-logo">
-          <span class="ap-logo-main">A P STUDIO</span>
+        <!-- Logo (Click triggers Camera Flash!) -->
+        <a href="#home" class="ap-logo" onclick="triggerCameraFlash()">
+          <span class="ap-logo-main">A P STUDIO 📸</span>
           <span class="ap-logo-sub">PHOTOGRAPHY & PRODUCTION</span>
         </a>
 
@@ -37,10 +53,22 @@
           </ul>
         </nav>
 
-        <!-- Primary CTA -->
-        <div style="display:flex; align-items:center; gap:16px;">
-          <a href="#contact" class="btn-ap-primary">
-            <span>Book the Studio</span>
+        <!-- Interactive Studio Controls & Primary CTA -->
+        <div style="display:flex; align-items:center; gap:14px;">
+          <!-- Viewfinder Toggle -->
+          <button onclick="toggleViewfinder()" class="btn-ap-outline" style="padding:7px 14px; font-size:0.75rem;" title="Toggle Camera Viewfinder Overlay">
+            <span>📷 Viewfinder</span>
+          </button>
+
+          <!-- Studio Mood Switcher -->
+          <div class="studio-mood-bar">
+            <button class="mood-btn active" onclick="setStudioMood('cinematic')" title="Cinematic Dark Mode">Dark</button>
+            <button class="mood-btn" onclick="setStudioMood('neon')" title="Neon Cyber Mode">Neon</button>
+            <button class="mood-btn" onclick="setStudioMood('daylight')" title="Studio Daylight Mode">Light</button>
+          </div>
+
+          <a href="#contact" class="btn-ap-primary" onclick="triggerCameraFlash()">
+            <span>Book Studio 📸</span>
           </a>
           <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -191,6 +219,19 @@
       <span class="section-label">EQUIPMENT RENTAL</span>
       <h2 class="section-title">Professional Gear,<br>Ready When You Are.</h2>
 
+      <!-- Interactive Gear Recommendation Quiz -->
+      <div class="gear-finder-box">
+        <span style="font-size:0.78rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-accent);">⚡ Quick Gear Matcher</span>
+        <h4 style="font-family:var(--font-serif); font-size:1.3rem; margin-top:4px; color:var(--color-text);">What are you shooting today?</h4>
+        <div class="gear-quiz-btns">
+          <button class="gear-quiz-btn active" onclick="filterGear('all')">All Equipment</button>
+          <button class="gear-quiz-btn" onclick="filterGear('Portrait')">Portrait Session 📸</button>
+          <button class="gear-quiz-btn" onclick="filterGear('Cinema')">Cinematic Film 🎬</button>
+          <button class="gear-quiz-btn" onclick="filterGear('Fashion')">Fashion Runway 👠</button>
+          <button class="gear-quiz-btn" onclick="filterGear('Commercial')">Commercial Product 📦</button>
+        </div>
+      </div>
+
       <div class="rental-grid-5col" id="camera-rental-container">
         <!-- Rendered dynamically by js/main.js -->
       </div>
@@ -198,7 +239,7 @@
   </section>
 
   <!-- ==========================================================================
-     FULL-WIDTH VISUAL GALLERY (#gallery) — WITH LIGHTBOX MODAL
+     FULL-WIDTH VISUAL GALLERY (#gallery) — WITH LIGHTBOX MODAL & POLAROID DECK
      ========================================================================== -->
   <section class="ap-section" id="gallery">
     <div class="container">
@@ -207,6 +248,30 @@
 
       <div class="gallery-grid-4col" id="gallery-masonry-container">
         <!-- Rendered dynamically by js/main.js -->
+      </div>
+
+      <!-- Interactive Polaroid Stack Deck -->
+      <div style="margin-top:60px; text-align:center;">
+        <span class="section-label">INTERACTIVE POLAROID DECK</span>
+        <h3 style="font-family:var(--font-serif); font-size:1.6rem; color:var(--color-text); margin-top:4px;">Hover & Flip Studio Prints</h3>
+        <div class="polaroid-stack-container">
+          <div class="polaroid-card" onclick="triggerCameraFlash()">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Fine Art" class="polaroid-img">
+            <div class="polaroid-caption">Fine Art Study #01</div>
+          </div>
+          <div class="polaroid-card" onclick="triggerCameraFlash()">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Cinematic" class="polaroid-img">
+            <div class="polaroid-caption">Cinematic Mood #02</div>
+          </div>
+          <div class="polaroid-card" onclick="triggerCameraFlash()">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Studio Light" class="polaroid-img">
+            <div class="polaroid-caption">Studio Light #03</div>
+          </div>
+          <div class="polaroid-card" onclick="triggerCameraFlash()">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" alt="Fashion Cover" class="polaroid-img">
+            <div class="polaroid-caption">Fashion Cover #04</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

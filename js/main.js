@@ -1,5 +1,5 @@
 /**
- * A P STUDIO — Master Interactive Orchestrator
+ * A P STUDIO — Master Interactive Orchestrator with Fun Studio Experiences
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,9 +17,130 @@ document.addEventListener('DOMContentLoaded', () => {
   initHallOfFameHover();
   initLightbox();
   initBookingForm();
+  initKeyboardFlash();
 });
 
-/* 1. Header Scroll Transparent to Solid Transition */
+/* --------------------------------------------------------------------------
+   FUN INTERACTIVE STUDIO FEATURES & CAMERA FX
+   -------------------------------------------------------------------------- */
+
+/* 1. Camera Flash FX */
+function triggerCameraFlash() {
+  const flashEl = document.getElementById('camera-flash');
+  if (!flashEl) return;
+
+  flashEl.classList.add('flashing');
+  setTimeout(() => {
+    flashEl.classList.remove('flashing');
+  }, 100);
+
+  // Play subtle synthetic camera shutter click audio tone
+  playShutterSound();
+}
+
+function playShutterSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(800, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.08);
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.08);
+  } catch (e) {
+    // Audio Context fallback if blocked
+  }
+}
+
+/* Spacebar Camera Flash Keyboard Easter Egg */
+function initKeyboardFlash() {
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      triggerCameraFlash();
+    }
+  });
+}
+
+/* 2. Viewfinder Camera Overlay Toggle */
+function toggleViewfinder() {
+  const hud = document.getElementById('viewfinder-hud');
+  if (!hud) return;
+  hud.classList.toggle('active');
+  triggerCameraFlash();
+}
+
+/* 3. Studio Mood Theme Switcher */
+function setStudioMood(mood) {
+  document.body.classList.remove('theme-neon', 'theme-daylight');
+  const moodBtns = document.querySelectorAll('.mood-btn');
+  moodBtns.forEach(btn => btn.classList.remove('active'));
+
+  if (mood === 'neon') {
+    document.body.classList.add('theme-neon');
+    if (moodBtns[1]) moodBtns[1].classList.add('active');
+  } else if (mood === 'daylight') {
+    document.body.classList.add('theme-daylight');
+    if (moodBtns[2]) moodBtns[2].classList.add('active');
+  } else {
+    if (moodBtns[0]) moodBtns[0].classList.add('active');
+  }
+
+  triggerCameraFlash();
+}
+
+/* 4. Interactive Gear Finder Quiz Filter */
+function filterGear(type) {
+  const btns = document.querySelectorAll('.gear-quiz-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const container = document.getElementById('camera-rental-container');
+  if (!container || !AP_STUDIO_DATA?.cameraRental) return;
+
+  if (type === 'all') {
+    renderCameraRental();
+    return;
+  }
+
+  // Filter gear list based on shoot type focus
+  const filtered = AP_STUDIO_DATA.cameraRental.filter(c => {
+    if (type === 'Portrait') return c.category === 'Lenses' || c.category === 'Lighting' || c.category === 'Cameras';
+    if (type === 'Cinema') return c.category === 'Cameras' || c.category === 'Audio' || c.category === 'Accessories';
+    if (type === 'Fashion') return c.category === 'Lighting' || c.category === 'Lenses' || c.category === 'Accessories';
+    if (type === 'Commercial') return c.category === 'Lighting' || c.category === 'Cameras' || c.category === 'Lenses';
+    return true;
+  });
+
+  container.innerHTML = filtered.map(c => `
+    <div class="rental-cat-card" style="border-color:var(--color-accent); transform:translateY(-3px);">
+      <div class="rental-img-box">
+        <img src="${c.image}" alt="${c.category}">
+      </div>
+      <div class="rental-body">
+        <span style="font-size:0.65rem; color:var(--color-accent); font-weight:700;">MATCHED FOR ${type.toUpperCase()}</span>
+        <h4 class="rental-title">${c.category}</h4>
+        <p class="rental-desc">${c.desc}</p>
+        <a href="#contact" onclick="preselectService('Camera Rental - ${c.category}')" class="service-link" style="margin-top:12px;">
+          <span>Explore Gear →</span>
+        </a>
+      </div>
+    </div>
+  `).join('');
+
+  triggerCameraFlash();
+}
+
+/* --------------------------------------------------------------------------
+   EXISTING CORE RENDER FUNCTIONS
+   -------------------------------------------------------------------------- */
+
+/* Header Scroll */
 function initHeaderScroll() {
   const header = document.getElementById('site-header');
   if (!header) return;
@@ -33,7 +154,7 @@ function initHeaderScroll() {
   });
 }
 
-/* 2. Mobile Full-Screen Menu Toggle */
+/* Mobile Menu */
 function initMobileMenu() {
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const overlay = document.getElementById('mobile-nav-overlay');
@@ -53,7 +174,7 @@ function initMobileMenu() {
   });
 }
 
-/* 3. Render Services Grid */
+/* Render Services Grid */
 function renderServices() {
   const container = document.getElementById('services-container');
   if (!container || !AP_STUDIO_DATA?.services) return;
@@ -78,13 +199,13 @@ function preselectService(title) {
   if (selectEl) selectEl.value = title;
 }
 
-/* 4. Render Portfolio (Asymmetrical Editorial Layout) */
+/* Render Portfolio */
 function renderPortfolio() {
   const container = document.getElementById('portfolio-container');
   if (!container || !AP_STUDIO_DATA?.portfolio) return;
 
   container.innerHTML = AP_STUDIO_DATA.portfolio.map(p => `
-    <article class="ap-portfolio-card ${p.layout}">
+    <article class="ap-portfolio-card ${p.layout}" onclick="triggerCameraFlash()">
       <div class="portfolio-img-wrap">
         <img src="${p.image}" alt="${p.title}" loading="lazy">
       </div>
@@ -99,13 +220,13 @@ function renderPortfolio() {
   `).join('');
 }
 
-/* 5. Render Hall of Fame List */
+/* Render Hall of Fame List */
 function renderHallOfFame() {
   const container = document.getElementById('hall-fame-container');
   if (!container || !AP_STUDIO_DATA?.hallOfFame) return;
 
   container.innerHTML = AP_STUDIO_DATA.hallOfFame.map(h => `
-    <div class="hall-fame-item" data-image="${h.image}">
+    <div class="hall-fame-item" data-image="${h.image}" onclick="triggerCameraFlash()">
       <span class="hall-num">${h.number}</span>
       <h3 class="hall-name">${h.name}</h3>
       <span class="hall-category">${h.category}</span>
@@ -113,7 +234,7 @@ function renderHallOfFame() {
   `).join('');
 }
 
-/* Hall of Fame Dynamic Cursor Image Preview Tracker */
+/* Hall of Fame Dynamic Cursor Tracker */
 function initHallOfFameHover() {
   const items = document.querySelectorAll('.hall-fame-item');
   const previewBox = document.getElementById('hall-preview-box');
@@ -121,7 +242,7 @@ function initHallOfFameHover() {
   if (!previewBox || !previewImg) return;
 
   items.forEach(item => {
-    item.addEventListener('mouseenter', (e) => {
+    item.addEventListener('mouseenter', () => {
       const imgSrc = item.getAttribute('data-image');
       if (imgSrc) {
         previewImg.src = imgSrc;
@@ -140,7 +261,7 @@ function initHallOfFameHover() {
   });
 }
 
-/* 6. Render Studio Spaces (4 Studio Showcase Cards) */
+/* Render Studio Spaces */
 function renderStudioSpaces() {
   const container = document.getElementById('studio-spaces-container');
   if (!container || !AP_STUDIO_DATA?.studioSpaces) return;
@@ -157,15 +278,15 @@ function renderStudioSpaces() {
         <ul class="space-facilities-list">
           ${sp.facilities.map(f => `<li>✓ ${f}</li>`).join('')}
         </ul>
-        <a href="#contact" onclick="preselectService('Studio Booking - ${sp.name}')" class="btn-ap-outline" style="margin-top:auto;">
-          <span>Book ${sp.tag} →</span>
+        <a href="#contact" onclick="preselectService('Studio Booking - ${sp.name}'); triggerCameraFlash();" class="btn-ap-outline" style="margin-top:auto;">
+          <span>Book ${sp.tag} 📸</span>
         </a>
       </div>
     </article>
   `).join('');
 }
 
-/* 7. Render Camera Rental Categories */
+/* Render Camera Rental */
 function renderCameraRental() {
   const container = document.getElementById('camera-rental-container');
   if (!container || !AP_STUDIO_DATA?.cameraRental) return;
@@ -186,13 +307,13 @@ function renderCameraRental() {
   `).join('');
 }
 
-/* 8. Render Full-Width Visual Gallery */
+/* Render Gallery */
 function renderGallery() {
   const container = document.getElementById('gallery-masonry-container');
   if (!container || !AP_STUDIO_DATA?.gallery) return;
 
   container.innerHTML = AP_STUDIO_DATA.gallery.map((g, idx) => `
-    <div class="gallery-item" onclick="openLightbox(${idx})">
+    <div class="gallery-item" onclick="openLightbox(${idx}); triggerCameraFlash();">
       <img src="${g.image}" alt="${g.title}" loading="lazy">
       <div class="gallery-hover-overlay">
         <span class="gallery-cat">${g.category}</span>
@@ -202,7 +323,7 @@ function renderGallery() {
   `).join('');
 }
 
-/* 9. Lightbox Modal Controller */
+/* Lightbox Modal */
 let currentLightboxIdx = 0;
 
 function openLightbox(idx) {
@@ -241,13 +362,13 @@ function initLightbox() {
   });
 }
 
-/* 10. Render Behind The Scenes */
+/* Render Behind The Scenes */
 function renderBehindTheScenes() {
   const container = document.getElementById('bts-container');
   if (!container || !AP_STUDIO_DATA?.behindTheScenes) return;
 
   container.innerHTML = AP_STUDIO_DATA.behindTheScenes.map(b => `
-    <article class="bts-card">
+    <article class="bts-card" onclick="triggerCameraFlash()">
       <div class="bts-img-box">
         <img src="${b.image}" alt="${b.title}" loading="lazy">
       </div>
@@ -259,7 +380,7 @@ function renderBehindTheScenes() {
   `).join('');
 }
 
-/* 11. Render Why A P Studio */
+/* Render Why Us */
 function renderWhyUs() {
   const container = document.getElementById('whyus-container');
   if (!container || !AP_STUDIO_DATA?.whyUs) return;
@@ -272,7 +393,7 @@ function renderWhyUs() {
   `).join('');
 }
 
-/* 12. Render Testimonials */
+/* Render Testimonials */
 function renderTestimonials() {
   const container = document.getElementById('testimonials-container');
   if (!container || !AP_STUDIO_DATA?.testimonials) return;
@@ -288,15 +409,16 @@ function renderTestimonials() {
   `).join('');
 }
 
-/* 13. Contact Form Handler */
+/* Contact Form */
 function initBookingForm() {
   const form = document.getElementById('ap-contact-form');
   if (!form) return;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    triggerCameraFlash();
     const name = document.getElementById('inquiry-name')?.value || 'Valued Creator';
-    alert(`Thank you, ${name}! Your studio enquiry has been sent to A P Studio. Our creative team will get back to you shortly.`);
+    alert(`📸 Flash! Thank you, ${name}! Your studio enquiry has been sent to A P Studio. Our creative team will get back to you shortly.`);
     form.reset();
   });
 }
