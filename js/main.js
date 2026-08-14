@@ -1,10 +1,11 @@
 /**
- * A P STUDIO — Master Interactive Orchestrator with Fun Studio Experiences
+ * A P STUDIO — Master Interactive Orchestrator with Refined Section Layouts
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initMobileMenu();
+  initScrollSpy();
   renderServices();
   renderPortfolio();
   renderHallOfFame();
@@ -34,7 +35,6 @@ function triggerCameraFlash() {
     flashEl.classList.remove('flashing');
   }, 100);
 
-  // Play subtle synthetic camera shutter click audio tone
   playShutterSound();
 }
 
@@ -53,7 +53,7 @@ function playShutterSound() {
     osc.start();
     osc.stop(ctx.currentTime + 0.08);
   } catch (e) {
-    // Audio Context fallback if blocked
+    // Audio Context fallback
   }
 }
 
@@ -98,7 +98,7 @@ function setStudioMood(mood) {
 function filterGear(type) {
   const btns = document.querySelectorAll('.gear-quiz-btn');
   btns.forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
 
   const container = document.getElementById('camera-rental-container');
   if (!container || !AP_STUDIO_DATA?.cameraRental) return;
@@ -108,7 +108,6 @@ function filterGear(type) {
     return;
   }
 
-  // Filter gear list based on shoot type focus
   const filtered = AP_STUDIO_DATA.cameraRental.filter(c => {
     if (type === 'Portrait') return c.category === 'Lenses' || c.category === 'Lighting' || c.category === 'Cameras';
     if (type === 'Cinema') return c.category === 'Cameras' || c.category === 'Audio' || c.category === 'Accessories';
@@ -123,9 +122,10 @@ function filterGear(type) {
         <img src="${c.image}" alt="${c.category}">
       </div>
       <div class="rental-body">
-        <span style="font-size:0.65rem; color:var(--color-accent); font-weight:700;">MATCHED FOR ${type.toUpperCase()}</span>
+        <span style="font-size:0.65rem; color:var(--color-accent); font-weight:700; display:block; margin-bottom:4px;">MATCHED FOR ${type.toUpperCase()}</span>
         <h4 class="rental-title">${c.category}</h4>
         <p class="rental-desc">${c.desc}</p>
+        <span style="font-size:0.75rem; color:var(--color-text); font-family:monospace; display:block; margin-top:8px;">${c.items}</span>
         <a href="#contact" onclick="preselectService('Camera Rental - ${c.category}')" class="service-link" style="margin-top:12px;">
           <span>Explore Gear →</span>
         </a>
@@ -137,7 +137,7 @@ function filterGear(type) {
 }
 
 /* --------------------------------------------------------------------------
-   EXISTING CORE RENDER FUNCTIONS
+   CORE RENDER FUNCTIONS
    -------------------------------------------------------------------------- */
 
 /* Header Scroll */
@@ -151,6 +151,29 @@ function initHeaderScroll() {
     } else {
       header.classList.remove('scrolled');
     }
+  });
+}
+
+/* Active ScrollSpy Navigation */
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.ap-nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const secTop = sec.offsetTop - 120;
+      if (window.scrollY >= secTop) {
+        current = sec.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
   });
 }
 
@@ -183,7 +206,10 @@ function renderServices() {
     <article class="ap-service-row">
       <span class="service-num">${s.number}</span>
       <div class="service-content">
-        <h3 class="service-title">${s.title}</h3>
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:4px;">
+          <h3 class="service-title" style="margin:0;">${s.title}</h3>
+          <span style="font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent); background:rgba(200, 169, 107, 0.12); padding:3px 10px; border-radius:12px; border:1px solid rgba(200, 169, 107, 0.25);">${s.tag}</span>
+        </div>
         <p class="service-desc">${s.desc}</p>
       </div>
       <a href="#contact" onclick="preselectService('${s.title}')" class="service-arrow-cta">
@@ -208,6 +234,7 @@ function renderPortfolio() {
     <article class="ap-portfolio-card ${p.layout}" onclick="triggerCameraFlash()">
       <div class="portfolio-img-wrap">
         <img src="${p.image}" alt="${p.title}" loading="lazy">
+        <span style="position:absolute; top:20px; left:20px; background:rgba(11, 11, 11, 0.85); color:var(--color-text); font-size:0.75rem; font-weight:600; padding:4px 12px; border-radius:20px; border:1px solid var(--border-color); backdrop-filter:blur(6px);">${p.client}</span>
       </div>
       <div class="portfolio-meta">
         <div>
@@ -228,7 +255,10 @@ function renderHallOfFame() {
   container.innerHTML = AP_STUDIO_DATA.hallOfFame.map(h => `
     <div class="hall-fame-item" data-image="${h.image}" onclick="triggerCameraFlash()">
       <span class="hall-num">${h.number}</span>
-      <h3 class="hall-name">${h.name}</h3>
+      <div>
+        <h3 class="hall-name">${h.name}</h3>
+        <span style="font-size:0.72rem; color:var(--color-accent); font-weight:600; display:block; margin-top:2px;">${h.tags}</span>
+      </div>
       <span class="hall-category">${h.category}</span>
     </div>
   `).join('');
@@ -275,10 +305,27 @@ function renderStudioSpaces() {
       <div class="space-body">
         <h3 class="space-name">${sp.name}</h3>
         <p class="space-desc">${sp.desc}</p>
+        
+        <!-- Key Specifications Grid -->
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-bottom:20px; background:var(--bg-primary); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-color); text-align:center;">
+          <div>
+            <span style="font-size:0.65rem; color:var(--color-muted); text-transform:uppercase; display:block;">Floor Area</span>
+            <strong style="font-size:0.85rem; color:var(--color-accent);">${sp.specs.area}</strong>
+          </div>
+          <div>
+            <span style="font-size:0.65rem; color:var(--color-muted); text-transform:uppercase; display:block;">Ceiling</span>
+            <strong style="font-size:0.85rem; color:var(--color-text);">${sp.specs.ceiling}</strong>
+          </div>
+          <div>
+            <span style="font-size:0.65rem; color:var(--color-muted); text-transform:uppercase; display:block;">Lighting</span>
+            <strong style="font-size:0.85rem; color:var(--color-text);">${sp.specs.light}</strong>
+          </div>
+        </div>
+
         <ul class="space-facilities-list">
           ${sp.facilities.map(f => `<li>✓ ${f}</li>`).join('')}
         </ul>
-        <a href="#contact" onclick="preselectService('Studio Booking - ${sp.name}'); triggerCameraFlash();" class="btn-ap-outline" style="margin-top:auto;">
+        <a href="#contact" onclick="preselectService('Studio Booking - ${sp.name}'); triggerCameraFlash();" class="btn-ap-outline" style="margin-top:auto; justify-content:center;">
           <span>Book ${sp.tag} 📸</span>
         </a>
       </div>
@@ -299,8 +346,9 @@ function renderCameraRental() {
       <div class="rental-body">
         <h4 class="rental-title">${c.category}</h4>
         <p class="rental-desc">${c.desc}</p>
+        <span style="font-size:0.75rem; color:var(--color-text); font-family:monospace; display:block; margin-top:8px;">${c.items}</span>
         <a href="#contact" onclick="preselectService('Camera Rental - ${c.category}')" class="service-link" style="margin-top:12px;">
-          <span>Explore Gear →</span>
+          <span>Rent Gear →</span>
         </a>
       </div>
     </div>
@@ -385,8 +433,9 @@ function renderWhyUs() {
   const container = document.getElementById('whyus-container');
   if (!container || !AP_STUDIO_DATA?.whyUs) return;
 
-  container.innerHTML = AP_STUDIO_DATA.whyUs.map(w => `
+  container.innerHTML = AP_STUDIO_DATA.whyUs.map((w, idx) => `
     <div class="whyus-box">
+      <span style="font-family:var(--font-serif); font-size:1.4rem; color:var(--color-accent); font-weight:700; display:block; margin-bottom:6px;">0${idx+1}</span>
       <h4 class="whyus-title">${w.title}</h4>
       <p class="whyus-desc">${w.desc}</p>
     </div>
@@ -400,6 +449,7 @@ function renderTestimonials() {
 
   container.innerHTML = AP_STUDIO_DATA.testimonials.map(t => `
     <article class="testimonial-card">
+      <div style="font-family:var(--font-serif); font-size:3.5rem; color:var(--color-accent); opacity:0.25; line-height:1; margin-bottom:-20px;">“</div>
       <p class="test-quote">"${t.quote}"</p>
       <div class="test-author-box">
         <strong class="test-author">${t.author}</strong>
